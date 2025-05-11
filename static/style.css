@@ -1,0 +1,104 @@
+/* Общие стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #b9a0bc; /* Лавандово-розовый фон */
+    color: #2c2c2c;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+/* Контейнер */
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок */
+.main-title {
+    font-size: 34px;
+    color: #a64ac9; /* Сиреневый */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Форма */
+.input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 10%;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #d5b0e5;
+    border-radius: 8px;
+    background-color: #fffafc;
+}
+
+button {
+    background-color: #a64ac9;
+    color: white;
+    padding: 14px 28px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #7e3c9d;
+}
+
+/* Результаты */
+.result-box {
+    background-color: #cac0d2;
+    padding: 24px;
+    margin-top: 30px;
+    border-radius: 10px;
+    border-left: 6px solid #a64ac9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    font-size: 24px;
+    color: #a64ac9;
+    margin-bottom: 12px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    font-size: 17px;
+    padding: 6px 0;
+    color: #333;
+}
+
+/* Рекомендация */
+.recommendation {
+    font-weight: bold;
+    color: #c71585;
+    font-size: 18px;
+}

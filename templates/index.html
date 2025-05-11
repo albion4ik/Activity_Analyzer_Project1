@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Student Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="main-title">🎓 AI Student Activity Analyzer</h1>
+
+    <!-- Анализ активности -->
+    <form method="POST" class="input-form">
+        <input type="hidden" name="run_mode" value="analyze_activity">
+        <p><strong>Enter your main activity for each hour:</strong></p>
+        {% for hour in range(6, 23) %}
+            <label for="hour_{{ hour }}">Hour {{ hour }}:00 - {{ hour+1 }}:00</label>
+            <select name="hour_{{ hour }}" id="hour_{{ hour }}">
+                <option value="">-- Select activity --</option>
+                <option value="Studying">Studying</option>
+                <option value="Reading">Reading</option>
+                <option value="Resting">Resting</option>
+                <option value="Sleeping">Sleeping</option>
+                <option value="Exercise">Exercise</option>
+                <option value="Eating">Eating</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Other">Other</option>
+            </select>
+        {% endfor %}
+        <button type="submit">📋 Analyze Activity</button>
+    </form>
+
+    <!-- Запуск AI -->
+    <form method="POST" class="input-form">
+        <input type="hidden" name="run_mode" value="run_ai">
+        <button type="submit">▶️ Run All AI Algorithms</button>
+    </form>
+
+    {% if activity_summary %}
+        <div class="result-box">
+            <h2>📊 Activity Summary:</h2>
+            <ul>
+                {% for activity, count in activity_summary.items() %}
+                    <li><strong>{{ activity }}:</strong> {{ count }} hour(s)</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if suggestion %}
+        <div class="result-box recommendation">
+            <h2>✅ Recommendation:</h2>
+            <p>{{ suggestion }}</p>
+        </div>
+    {% endif %}
+
+    {% if ai_results %}
+        <div class="result-box">
+            <h2>🧠 AI Algorithms Results (Task A)</h2>
+            <table border="1" style="width:100%; border-collapse: collapse; background: #fffafc;">
+                <tr style="background-color:#e8dff0;">
+                    <th style="padding:10px;">Algorithm</th>
+                    <th>Prediction</th>
+                    <th>Accuracy</th>
+                </tr>
+                {% for algo, result, acc in ai_results %}
+                    <tr>
+                        <td style="padding:8px;">{{ algo }}</td>
+                        <td>{{ result }}</td>
+                        <td>{{ acc }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+    {% if chart_url %}
+        <div class="result-box">
+            <h2>📈 Accuracy Comparison Chart</h2>
+            <img src="data:image/png;base64,{{ chart_url }}" alt="Chart" style="max-width: 100%; border-radius: 12px;">
+        </div>
+    {% endif %}
+
+    {% if kmeans_result or pca_result or fpgrowth_result %}
+        <div class="result-box">
+            <h2>🧪 Task B: Unsupervised Learning Results</h2>
+            {% if kmeans_result %}
+                <p><strong>KMeans Result:</strong> {{ kmeans_result }}</p>
+            {% endif %}
+            {% if pca_result %}
+                <p><strong>PCA Result:</strong> {{ pca_result }}</p>
+            {% endif %}
+            {% if fpgrowth_result %}
+                <p><strong>FP-Growth Association Rules:</strong></p>
+                <ul>
+                    {% for rule in fpgrowth_result %}
+                        <li>{{ rule }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="result-box">
+        <h2>🖼️ Task C: Object Detection</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="run_mode" value="run_cv">
+            <input type="file" name="image_file" accept="image/*" required>
+            <br><br>
+            <button type="submit">🧠 Analyze Image</button>
+        </form>
+
+        {% if image_result %}
+            <h3>🧾 Detected Object:</h3>
+            <p>{{ image_result }}</p>
+            <img src="{{ image_path }}" alt="Uploaded Image" style="max-width: 100%; border-radius: 10px;">
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
