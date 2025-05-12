@@ -99,7 +99,7 @@ ai-student-analyzer/
 
 ---
 
-## 📷 Screenshots
+
 
 *(Add screenshots of your app here during testing and UI demo)*
 
